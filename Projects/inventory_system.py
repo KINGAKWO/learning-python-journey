@@ -25,6 +25,10 @@ def add_product(sku, name, price , quantity):
         }
         print(f"product '{name}' added succesfully!")
         
+# Example usage of add_product function
+add_product("SKU000", "New Widget", 29.99, 30)  # Adding a new product
+
+        
 # Function to update-function design
 def update_product(sku: str, *, name: str = None,
                    price: float = None, quantity: int = None) -> None:
@@ -70,3 +74,63 @@ update_product("SKU789", name="Gizmo C (2nd Gen)", price=11.49, quantity=8
 
 # 4. Attempt to update a non‑existent item
 update_product("SKU000", price=5.00)
+
+# 5. Attempt to update a product with an invalid SKU
+update_product("INVALID_SKU", name="Invalid Product"
+               , price=0.00, quantity=0)
+# 6. Attempt to update a product with an invalid price
+update_product("SKU321", price=-10.00)
+
+# 7. Attempt to update a product with an invalid quantity
+update_product("SKU123", quantity=-5)
+# 8. Attempt to update a product with an invalid name
+update_product("SKU456", name="")
+
+# 9. Attempt to update a product with an invalid name
+update_product("SKU789", name="Gizmo C (2nd Gen)", price=11.49, quantity=80)
+# 10. Attempt to update a product with an invalid name
+update_product("SKU321", name="New Widget", price=29.99, quantity=30)
+
+
+
+def remove_product(sku: str) -> None:
+    """
+    Remove a product from the catalog using its SKU.
+    
+    Args:
+        sku (str): The SKU of the product to remove.
+    """
+    if sku in product_catalog:
+        removed = product_catalog.pop(sku)
+        print(f"🗑️  Removed product: {sku} → {removed}")
+    else:
+        print("❌  SKU not found. No product removed.")
+        
+# Example usage of remove_product function
+remove_product("SKU123")  # Removing a product
+remove_product("SKU000")  # Attempting to remove a non-existent product
+
+
+def display_inventory():
+    """
+    Prints a formatted table of the current inventory.
+    """
+    if not product_catalog:
+        print("📦 Inventory is currently empty.")
+        return
+
+    print("\n📋 Current Inventory:")
+    print("-" * 60)
+    print(f"{'SKU':<10} {'Product Name':<20} {'Price':>8} {'Qty':>6}")
+    print("-" * 60)
+
+    for sku, details in product_catalog.items():
+        name = details["name"]
+        price = details["price"]
+        quantity = details["quantity"]
+        print(f"{sku:<10} {name:<20} ${price:>7.2f} {quantity:>6}")
+
+    print("-" * 60)
+
+# Display the initial inventory
+display_inventory()
