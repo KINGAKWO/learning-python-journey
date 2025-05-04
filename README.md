@@ -16,7 +16,7 @@ A command-line application that converts temperatures between Celsius and Fahren
 ```bash
 python projects/temperature_converter.py
 ```
-### 1. Sandwich Maker
+### 2. Sandwich Maker
 A function that returns a descriptive string of a sandwich based on user-selected ingredients.
 **Features:**
 - Parameters for bread type, filling, cheese, and toasted option.
